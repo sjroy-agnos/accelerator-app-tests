@@ -1,0 +1,7 @@
+{
+  "requestTimeout": 10000,
+  "defaultCommandTimeout": 150000,
+  "pageLoadTimeout": 150000,
+  "ScreenshotOnRunFailure": true,
+  "projectId": "9renew"
+}

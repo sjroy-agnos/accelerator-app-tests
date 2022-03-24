@@ -1,0 +1,12 @@
+{
+  "name": "accelerator_automation",
+  "version": "1.0.0",
+  "description": "Automation Framework for Patient-App and Accelerator",
+  "main": "index.js",
+  "author": "AGNOS-TECH",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^9.5.2",
+    "cypress-cucumber-preprocessor": "^4.3.1"
+  }
+}
