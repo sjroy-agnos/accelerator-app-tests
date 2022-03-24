@@ -35,3 +35,15 @@ Cypress.Commands.add('clickOnElement', (locator) => {
 Cypress.Commands.add('checkElementVisibilityWithText', (locator, text) => {
     cy.get(locator).should('be.visible').should('have.text', text)
 })
+
+Cypress.Commands.add('verifyElementPropertyAndValueIncluded', (locator, attribute, value) => {
+    cy.get(locator).should('have.attr', attribute).and('include', value)
+})
+
+Cypress.Commands.add('checkElementVisibilityWithTextAndSelected', (locator, text) => {
+    cy.get(locator).should('be.visible').should('have.text', text).should('have.attr', 'class').and('include', 'Mui-selected')
+})
+
+Cypress.Commands.add('checkElementVisibilutyWithTextAndNotSelected', (locator, text) => {
+    cy.get(locator).should('be.visible').should('have.text', text).should('have.attr', 'class').and('not.include', 'Mui-selected')
+})
