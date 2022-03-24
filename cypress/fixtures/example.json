@@ -2,5 +2,12 @@
   "name": "UI Automation sample framework for Patient-App",
   "email": "hello@cypress.io",
   "body": "Fixtures are a great way to mock data for responses to routes",
-  "baseUrl": "https://providers.myhealthrecord.healthcare/"
+  "baseUrl": "https://providers.myhealthrecord.healthcare/",
+  "logoName": "Agnos-logo",
+  "memberIDLabel": "Member Id",
+  "subscriberLabel": "Subscriber",
+  "contactHealthPlanLabel": "Contact Health Plan",
+  "appointmentsHeader": " Appointments",
+  "upcomingTab": "Upcoming",
+  "pastTab": "Past"
 }

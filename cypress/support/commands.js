@@ -47,3 +47,7 @@ Cypress.Commands.add('checkElementVisibilityWithTextAndSelected', (locator, text
 Cypress.Commands.add('checkElementVisibilutyWithTextAndNotSelected', (locator, text) => {
     cy.get(locator).should('be.visible').should('have.text', text).should('have.attr', 'class').and('not.include', 'Mui-selected')
 })
+
+Cypress.Commands.add('verifyPresenceOfList', (locator) => {
+    cy.get(locator).its('length').should('be.greaterThan', 1)
+})

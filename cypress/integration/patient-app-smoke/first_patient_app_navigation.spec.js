@@ -2,6 +2,8 @@
 
 const example_data = require("../../fixtures/example.json")
 const HomePage = require("../../support/pages/homePage")
+const MyPlanPage = require("../../support/pages/myPlanPage")
+const AppointmentsPage = require("../../support/pages/appointmentsPage")
 
 describe('Patient-App Smoke Navigation', () => {
 
@@ -12,65 +14,52 @@ describe('Patient-App Smoke Navigation', () => {
     it("Validate smoke navigation", async function () {
       // page references
       const homePage = new HomePage()
+      const myPlanPage = new MyPlanPage()
+      const appointmentsPage = new AppointmentsPage()
+
       // validate Patient-App navigation tray links
-      homePage.getHomePageImage()
-        .should('have.attr', 'src')
-        .and('include', 'Agnos-logo')
+      cy.verifyElementPropertyAndValueIncluded(homePage.homePageImageLink, 'src', example_data.logoName)
 
-      // homePage.getMyPlanLink().should('be.visible')
-      cy.checkVisibilityOfElement(homePage.myPleanLink)
+      cy.checkVisibilityOfElement(homePage.myPlanLink)
+
+      cy.checkVisibilityOfElement(homePage.appointmentsLink)
         
-      homePage.getAppointmentsLink().should('be.visible')
+      cy.checkVisibilityOfElement(homePage.myProvidersLink)
       
-      homePage.getMyProvidersLink().should('be.visible')
+      cy.checkVisibilityOfElement(homePage.healthLink)
 
-      homePage.getHealthLink().should('be.visible')
-        
-      homePage.getMoreBreadcrumbLink().should('be.visible')
+      cy.checkVisibilityOfElement(homePage.moreBreadcrumbLink)
 
       // Navigating to My Plan
-      // cy.get("a[href='/my-plan'] div[class='menu-icon-label menu-caption-style']").click()
-      homePage.clickOnMyPlanLink()
+      cy.clickOnElement(homePage.myPlanLink)
+
       // validate My Plan page
       cy.url().should('include', '/my-plan')
-      cy.get("div[class*='MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-md-4 MuiGrid-grid-lg-']:nth-child(1) span")
-        .should('be.visible')
-        .should('have.text', 'Member Id')
+
+      cy.checkElementVisibilityWithText(myPlanPage.memberIdLabel, example_data.memberIDLabel)
+
+      cy.checkElementVisibilityWithText(myPlanPage.subscriberLabel, example_data.subscriberLabel)
       
-      cy.get("div[class*='MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-md-4 MuiGrid-grid-lg-']:nth-child(2) span")
-        .should('be.visible')
-        .should('have.text', 'Subscriber')
-      
-      cy.get("div[class*='MuiPaper-elevation1 MuiPaper-rounded']>div[class*='card-title']")
-        .should('be.visible')
-        .should('have.text', 'Contact Health Plan')
+      cy.checkElementVisibilityWithText(myPlanPage.contactHealthPlanLabel, example_data.contactHealthPlanLabel)
 
       // Navigating to Appointments
-      cy.get("a[href='/appointments'] div[class='menu-icon-label menu-caption-style']").click()
+      cy.clickOnElement(homePage.appointmentsLink)
+
       // validate Appointments page
       cy.url().should('include', '/appointments')
-      cy.get("div[class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-true']>span[class*='MuiBox-root']>span")
-        .should('be.visible')
-        .should('have.text', ' Appointments')
+
+      cy.checkElementVisibilityWithText(appointmentsPage.appointmentsHeader, example_data.appointmentsHeader)
       
-      cy.get("div[class='MuiTabs-scroller MuiTabs-fixed'] button:nth-child(1)")
-        .should('be.visible')
-        .should('have.text', 'Upcoming')
-        .should('have.attr', 'class').and('include', 'Mui-selected')
+      cy.checkElementVisibilityWithTextAndSelected(appointmentsPage.upcomingTab, example_data.upcomingTab)
   
-      cy.get("svg[title='Schedule Appointment']").should('be.visible')
+      cy.checkVisibilityOfElement(appointmentsPage.newScheduleAppointmentButton)
 
-      cy.get("div[class='MuiTabs-scroller MuiTabs-fixed'] button:nth-child(2)")
-        .should('be.visible')
-        .should('have.text', 'Past')
-        .should('have.attr', 'class').and('not.include', 'Mui-selected')
+      cy.checkElementVisibilutyWithTextAndNotSelected(appointmentsPage.pastAppointmentTab)
       
-      cy.get("div[class='MuiTabs-scroller MuiTabs-fixed'] button:nth-child(2)").click()
-        .should('have.attr', 'class').and('include', 'Mui-selected')
+      cy.clickOnElement(appointmentsPage.pastAppointmentTab)
+      cy.checkElementVisibilityWithTextAndSelected(appointmentsPage.pastAppointmentTab, example_data.pastTab)
 
-      cy.get("div[class*='mobileViewList']>div")
-        .its('length').should('be.greaterThan', 0)
-      // cy.log(cy.get("div[class*='mobileViewList']>div").its('length'))
+      cy.verifyPresenceOfList(appointmentsPage.pastAppointmentList)
 
       // first element in the Past Appointment list 
       let name1;
