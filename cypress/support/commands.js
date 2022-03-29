@@ -49,5 +49,13 @@ Cypress.Commands.add('checkElementVisibilutyWithTextAndNotSelected', (locator, t
 })
 
 Cypress.Commands.add('verifyPresenceOfList', (locator) => {
-    cy.get(locator).its('length').should('be.greaterThan', 1)
+    cy.get(locator).its('length').should('be.greaterThan', 0)
+})
+
+Cypress.Commands.add('checkVisibilityOfWebElementWithSpecificText', (elementType, elementName) => {
+    cy.get(elementType).contains(elementName).should('be.visible')
+})
+
+Cypress.Commands.add('verifyListLength', (locator, length) => {
+    cy.get(locator).should('have.length', length)
 })

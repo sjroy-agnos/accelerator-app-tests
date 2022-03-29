@@ -9,5 +9,6 @@
   "contactHealthPlanLabel": "Contact Health Plan",
   "appointmentsHeader": " Appointments",
   "upcomingTab": "Upcoming",
-  "pastTab": "Past"
+  "pastTab": "Past",
+  "myHealthOptions": ["Condition", "Allergies", "Medications", "Encounters", "Immunizations", "Observations", "Diagnostic Reports", "Goals"]
 }
