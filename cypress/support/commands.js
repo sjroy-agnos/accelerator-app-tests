@@ -59,3 +59,11 @@ Cypress.Commands.add('checkVisibilityOfWebElementWithSpecificText', (elementType
 Cypress.Commands.add('verifyListLength', (locator, length) => {
     cy.get(locator).should('have.length', length)
 })
+
+Cypress.Commands.add('clickLinkFromOtionsList', (list_locator, link_name) => {
+  cy.get(list_locator).each(($el) => {
+    if ($el.text() === link_name) {
+      cy.wrap($el).click()
+    }
+  })
+})

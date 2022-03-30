@@ -10,5 +10,7 @@
   "appointmentsHeader": " Appointments",
   "upcomingTab": "Upcoming",
   "pastTab": "Past",
-  "myHealthOptions": ["Condition", "Allergies", "Medications", "Encounters", "Immunizations", "Observations", "Diagnostic Reports", "Goals"]
+  "myHealthOptions": ["Condition", "Allergies", "Medications", "Encounters", "Immunizations", "Observations", "Diagnostic Reports", "Goals"],
+  "moreBreadcrumbList": ["Profile", "Terms and Conditions", "Privacy Policy", "Logout"],
+  "myProfileLabels": ["ID", "Name", "Birth Date", "Gender", "Phone Numbers"]
 }

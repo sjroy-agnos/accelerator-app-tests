@@ -120,7 +120,75 @@ describe('Patient-App Smoke Navigation', async function () {
     })
 
     // Navigate and Verify My Health Option Tabs
-    
+    // verify Conditions tab
+    myHealthPage.clickOptionFromMyHealthOptionList("Condition")
+    cy.checkVisibilityOfWebElementWithSpecificText('span', ' Conditions')
+    cy.verifyPresenceOfList(myHealthPage.myHealthSubOptionsList)
+    cy.clickOnElement(myHealthPage.myHealthSubOptionsBackButton)
+
+    // verify Allergies tab
+    myHealthPage.clickOptionFromMyHealthOptionList("Allergies")
+    cy.checkVisibilityOfWebElementWithSpecificText('span', ' Allergies')
+    cy.verifyPresenceOfList(myHealthPage.myHealthSubOptionsList)
+    cy.clickOnElement(myHealthPage.myHealthSubOptionsBackButton)
+
+    // verify Medications tab
+    myHealthPage.clickOptionFromMyHealthOptionList("Medications")
+    cy.checkVisibilityOfWebElementWithSpecificText('span', ' Medications')
+    cy.checkVisibilityOfElement(myHealthPage.activeMedicationsButton)
+    cy.checkVisibilityOfElement(myHealthPage.inactiveMedicationsButton)
+    cy.checkVisibilityOfElement(myHealthPage.allMedicationsButton)
+    cy.get('span').contains('All').click()
+    cy.verifyPresenceOfList(myHealthPage.myHealthSubOptionsList)
+    cy.clickOnElement(myHealthPage.myHealthSubOptionsBackButton)
+
+    // verify Encounters tab
+    myHealthPage.clickOptionFromMyHealthOptionList("Encounters")
+    cy.checkVisibilityOfWebElementWithSpecificText('span', ' Encounters')
+    cy.verifyPresenceOfList(myHealthPage.myHealthSubOptionsList)
+    cy.clickOnElement(myHealthPage.myHealthSubOptionsBackButton)
+
+    // verify Immunizations tab
+    myHealthPage.clickOptionFromMyHealthOptionList("Immunizations")
+    cy.checkVisibilityOfWebElementWithSpecificText('span', ' Immunizations')
+    // cy.verifyPresenceOfList(myHealthPage.myHealthSubOptionsList) -- No data available
+    cy.clickOnElement(myHealthPage.myHealthSubOptionsBackButton)
+
+    // verify Diagnostic Reports tab
+    myHealthPage.clickOptionFromMyHealthOptionList("Diagnostic Reports")
+    cy.checkVisibilityOfWebElementWithSpecificText('span', 'Diagnostic Reports')
+    cy.verifyPresenceOfList(myHealthPage.myHealthSubOptionsList)
+    cy.clickOnElement(myHealthPage.myHealthSubOptionsBackButton)
+
+    // verify Goals tab
+    myHealthPage.clickOptionFromMyHealthOptionList("Goals")
+    cy.checkVisibilityOfWebElementWithSpecificText('span', ' Goals')
+    // cy.verifyPresenceOfList(myHealthPage.myHealthSubOptionsList) -- No data available
+    cy.clickOnElement(myHealthPage.myHealthSubOptionsBackButton)
+
+    // verify More Breadcrumb options
+    cy.clickOnElement(homePage.moreBreadcrumbLink)
+    cy.verifyListLength(homePage.moreOptionsLinkList, example_data.moreBreadcrumbList.length)
+    // verify more-options list
+    cy.get(homePage.moreOptionsLinkList).each((item, index) => {
+      cy.wrap(item).should('contain.text', example_data.moreBreadcrumbList[index])
+    })
+
+    // verify Profile tab
+    cy.clickLinkFromOtionsList(homePage.moreOptionsLinkList, 'Profile')
+    cy.checkVisibilityOfWebElementWithSpecificText('div', 'My Profile')
+    cy.verifyListLength(homePage.myProfileLabels, example_data.myProfileLabels.length)
+    //verify options list
+    cy.get(homePage.myProfileLabels).each((item, index) => {
+      cy.wrap(item).should('contain.text', example_data.myProfileLabels[index])
+    })
+
+    // verify Terms and Conditions tab
+    cy.clickOnElement(homePage.moreBreadcrumbLink)
+    cy.clickLinkFromOtionsList(homePage.moreOptionsLinkList, 'Terms and Conditions')
+    cy.checkVisibilityOfWebElementWithSpecificText('div', 'Terms and Conditions')
+    cy.checkVisibilityOfWebElementWithSpecificText('div', 'Terms of Use')
+    cy.checkVisibilityOfWebElementWithSpecificText('div', 'End User Software License Agreement')
 
   })
 })

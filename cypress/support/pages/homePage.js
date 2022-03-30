@@ -7,6 +7,8 @@ class HomePage {
     myProvidersLink = "a[href='/care-team'] div[class='menu-icon-label menu-caption-style']"
     healthLink = "a[href='/my-health'] div[class='menu-icon-label menu-caption-style']"
     moreBreadcrumbLink = ".menu-more-icon"
+    moreOptionsLinkList = "ul[role='menu'] a>div:nth-child(2)>span"
+    myProfileLabels = "div[class*='page-content-container_scrollbar-hidden'] div[class='MuiGrid-root MuiGrid-container'] span[class$='MuiTypography-caption']"
 
     //----------------- Methods -----------------//
 
